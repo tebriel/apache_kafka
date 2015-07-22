@@ -32,6 +32,7 @@ end
 
 kafka_brokerid = nil
 
+id = 0
 if node["apache_kafka"] && node["apache_kafka"]["servers"]
   node["apache_kafka"]["servers"].each do |server|
     if does_server_match_node? server
