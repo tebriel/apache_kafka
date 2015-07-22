@@ -29,6 +29,6 @@ remote_file download_path do
 end
 
 execute "unzip kafka source" do
-  command "tar -zxvf #{download_path} -C #{node["apache_kafka"]["install_dir"]}"
+  command "tar -zxvf #{download_path} -C #{node["apache_kafka"]["install_dir"]} --strip 1"
   not_if { ::File.exist?(::File.join(node["apache_kafka"]["install_dir"], version_tag)) }
 end
