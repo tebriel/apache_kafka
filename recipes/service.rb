@@ -18,15 +18,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version_tag = "kafka_#{node["apache_kafka"]["scala_version"]}-#{node["apache_kafka"]["version"]}"
-
 template "/etc/default/kafka" do
   source "kafka_env.erb"
   owner "kafka"
   action :create
   mode "0644"
   variables(
-    :kafka_home => ::File.join(node["apache_kafka"]["install_dir"], version_tag),
+    :kafka_home => node["apache_kafka"]["install_dir"],
     :kafka_config => node["apache_kafka"]["config_dir"],
     :kafka_bin => node["apache_kafka"]["bin_dir"],
     :kafka_user => node["apache_kafka"]["user"],
